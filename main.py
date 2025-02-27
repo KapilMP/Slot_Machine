@@ -21,19 +21,21 @@ symbol_values ={
     "D":2
 }
 
-def check_winnings(columns, lines,bet,values):
+def check_winnings(columns,lines,bet,values):
     winnings = 0
     winnings_lines = []
     for line in range(lines):
         symbol = columns[0][line]
+        #check is done base on column
         for column in columns:
             symbol_to_check = column[line]
             if symbol != symbol_to_check:
                 break
+                # if you break the else statement doesn't run
         else:
-            winnings += values[symbol] * bet
+            winnings = values[symbol] * bet
             winnings_lines.append(line + 1)
-    return winnings,winnings_lines
+        return winnings, winnings_lines
 
 
 def get_slot_machine_spin(rows,cols,symbols):
@@ -59,14 +61,14 @@ def get_slot_machine_spin(rows,cols,symbols):
     return columns
 
 def print_slot_machine(columns):
-#transposing
-    for row in range(len(columns[0])):
-        for i, column in enumerate(columns):
-            if i != len(columns) - 1:
-                print(column[row], end = "|")
+    #transposing: Visually appealing
+    for row in range(len(columns[0])): #run the loops base on the number of columns
+        for i, column in enumerate(columns): #col1[0], col2[0], col3[0]
+            if i != len(column) - 1:
+                print(column[row], end="|") # at the end print | instead of next line
             else:
-                print(column[row], end = "")
-        print()
+                print(column[row], end= "") #after column number ends print nothing
+        print() #after firs inner loops end go to next line
 
 
 
